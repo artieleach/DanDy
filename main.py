@@ -1,4 +1,5 @@
 import random
+import re
 from data import *
 from console import clear 
 input_class = str()
@@ -29,22 +30,27 @@ def get_info(): #grabs info from the user
 		input_race = random.choice(race_list)
 		input_class = random.choice(class_list)
 	if input_race not in race_list or input_class not in class_list: get_info()
-	return str((input_race + '.' + input_class))
+	return str(input_race + '.' + input_class)
 		
 def generate(user_race, user_class): #uses input to create character
 	ud = {}
 		
 	def roll_dice(roll):
-	  dice = int(str.split(roll, 'd')[0])
-	  sides = int(str.split(roll, 'd')[1])
-	  return sum(random.randint(1, sides) for _ in range(dice))
-  
+	  values = [int(x) for x in re.findall(r'\d+', roll)]
+	  dice =int(values[0])
+	  sides = int(values[1])
+	  drop = 0
+	  if 'D' in roll:drop = int(values[2])
+	  top_rolls = list(random.randint(1,sides) for _ in range(dice))
+	  top_rolls.sort()
+	  return sum(top_rolls[drop:])
+	
 	def pb(skill):
 	  return (ud[skill] - 10) // 2 
 		
 	def add_list(list, source, times=1):
+	  if 'x' in ud[list]:ud[list].pop(0)
 	  for i in range(times):
-	    if 'x' in ud[list]:ud[list].pop(0)
 	    ud[list].append(random.choice(source))
 	    while len(ud[list]) != len(set(ud[list])):
 	      ud[list].pop()
@@ -56,12 +62,12 @@ def generate(user_race, user_class): #uses input to create character
 	ud['Skills'] = ['x']
 	ud['Domains'] = ['x']
 	ud['Forbidden Schools'] = ['x']
-	ud['str'] = roll_dice('3d6')
-	ud['dex'] = roll_dice('3d6')
-	ud['con'] = roll_dice('3d6')
-	ud['int'] = roll_dice('3d6')
-	ud['wis'] = roll_dice('3d6')
-	ud['cha'] = roll_dice('3d6')
+	ud['str'] = roll_dice('4d6D1')
+	ud['dex'] = roll_dice('4d6D1')
+	ud['con'] = roll_dice('4d6D1')
+	ud['int'] = roll_dice('4d6D1')
+	ud['wis'] = roll_dice('4d6D1')
+	ud['cha'] = roll_dice('4d6D1')
 	ud['Alignment'] = random.choice(alignment1) + random.choice(alignment2)
 	ud['School'] = ''
 	ud['Familiar'] = ''
@@ -132,7 +138,7 @@ def generate(user_race, user_class): #uses input to create character
 		
 	if user_race == 'Half Elf':
 		ud['Tribe'] = random.choice(human_tribes)
-		ud['Name'] = '{} {}'.format(random.choice(tuple(human_first_names[ud['Tribe']])+tuple(elf_first_names)), random.choice(tuple(human_first_names[ud['Tribe']])+tuple(elf_last_names)))
+		ud['Name'] = '{} {}'.format(random.choice(list(human_first_names[ud['Tribe']])+list(elf_first_names)), random.choice(list(human_first_names[ud['Tribe']])+list(elf_last_names)))
 		if random.random() > 0.5: ud['Name'] += ' of the clan ' + ud['Tribe']
 		ud['Age'] = int(random.normalvariate(80, 20))
 		ud['Height'] = roll_dice('2d8') + 55
@@ -149,7 +155,7 @@ def generate(user_race, user_class): #uses input to create character
 		if random.random() > 0.5:
 			ud['Name'] = random.choice(orc_first_names)
 		else:
-			ud['Name'] = '{} {}'.format(random.choice(tuple(human_first_names[ud['Tribe']])), random.choice(tuple(human_last_names[ud['Tribe']])))
+			ud['Name'] = '{} {}'.format(random.choice(list(human_first_names[ud['Tribe']])), random.choice(list(human_last_names[ud['Tribe']])))
 		if random.random() > 0.7: ud['Alignment'] = random.choice(alignment1) + 'Evil'
 		if random.random() > 0.8: ud['Name'] = '{} of the tribe {}'.format(ud['Name'], ud['Tribe'])
 		ud['Age'] = int(random.normalvariate(25, 5))		
@@ -170,7 +176,7 @@ def generate(user_race, user_class): #uses input to create character
 		ud['Age'] = int(random.normalvariate(25, 4))
 		ud['Height'] = roll_dice('2d4') + 58
 		ud['Weight'] = 120 + roll_dice('2d6') * (ud['Height']-58)
-		ud['Name'] = '{} {} of the clan {}'.format(random.choice(tuple(human_first_names[ud['Tribe']])), random.choice(tuple(human_last_names[ud['Tribe']])), ud['Tribe'])
+		ud['Name'] = '{} {} of the clan {}'.format(random.choice(list(human_first_names[ud['Tribe']])), random.choice(list(human_last_names[ud['Tribe']])), ud['Tribe'])
 		ud['Size'] = 1
 		ud['Skin Tone'] = random.choice(human_skin_tones)
 		ud['Hair Color'] = random.choice(human_hair_colors)
@@ -192,8 +198,8 @@ def generate(user_race, user_class): #uses input to create character
 
 	if user_class == 'Bard':
 		ud['Weapon'] = random.choice(bard_weapons)
-		ud['Shield'] = random.choice(tuple(armor_data.keys())[12:16])
-		ud['Armor'] = random.choice(tuple(armor_data.keys()))
+		ud['Shield'] = random.choice(list(armor_data.keys())[12:16])
+		ud['Armor'] = random.choice(list(armor_data.keys()))
 		ud['Alignment'] = random.choice(alignment1[1:3]) + random.choice(alignment2)
 		if 'Chaotic' in ud['Alignment']:ud['Religion'] = 'Olidammara'
 		elif random.random() > 0.5:ud['Religion'] = random.choice(['Pelor', 'Corellon Larethian'])
@@ -236,7 +242,7 @@ def generate(user_race, user_class): #uses input to create character
 		ud['Gold'] = roll_dice('2d4')*10
 		
 	if user_class == 'Fighter':
-		ud['Weapon'] = random.choice(tuple(weapon_data.keys()))
+		ud['Weapon'] = random.choice(list(weapon_data.keys()))
 		ud['Shield'] = random.choice(shields)
 		ud['Armor'] = random.choice(armor)
 		ud['Religion'] = random.choice(fighter_religions)
@@ -246,9 +252,9 @@ def generate(user_race, user_class): #uses input to create character
 	if user_class == 'Monk':
 	  ud['Alignment'] = 'Lawful '+ random.choice(alignment2)
 	  if random.random() > 0.9:
-	    ud['Shield'] = random.choice(tuple(armor_data.keys())[12:16])
+	    ud['Shield'] = random.choice(list(armor_data.keys())[12:16])
 	    ud['Weapon'] = random.choice(monk_weapons)
-	    ud['Armor'] = random.choice(tuple(armor_data.keys())[0:12])
+	    ud['Armor'] = random.choice(list(armor_data.keys())[0:12])
 	  ud['Religion'] = random.choice(['Heironeous', 'St. Cuthbert', 'Hextor']+religions)
 	  if ud['Armor'] == 'None':
 	    ud['ac'] = 10 + armor_data[ud['Armor']]['Armor Bonus'] + armor_data[ud['Shield']]['Armor Bonus'] + pb('wis')
@@ -259,7 +265,7 @@ def generate(user_race, user_class): #uses input to create character
 	if user_class == 'Paladin':
 		ud['Armor'] = random.choice(armor)
 		ud['Shield'] = random.choice(shields)
-		ud['Weapon'] = random.choice(tuple(weapon_data.keys()))
+		ud['Weapon'] = random.choice(list(weapon_data.keys()))
 		ud['Alignment'] = 'Lawful Good'
 		ud['Religion'] = random.choice(['Heironeous', 'Pelor']+religions)
 		ud['Gold'] = roll_dice('6d4')*10
@@ -296,8 +302,8 @@ def generate(user_race, user_class): #uses input to create character
 		if random.random() > 0.7:
 		  ud['Languages'].pop()
 		  ud['Languages'].append('Draconic')
-		ud['School'] = random.choice(tuple(wizard_schools.keys()))
-		add_list('Forbidden Schools', tuple(wizard_schools.keys()), wizard_schools[ud['School']])
+		ud['School'] = random.choice(list(wizard_schools.keys()))
+		add_list('Forbidden Schools', list(wizard_schools.keys()), wizard_schools[ud['School']])
 		ud['Gold'] = roll_dice('3d4')*10
 		
 	if pb('int') > 1:add_list('Languages', language_list)
