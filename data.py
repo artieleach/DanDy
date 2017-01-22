@@ -225,8 +225,8 @@ human_last_names = {
 "Turami": {"Agosto", "Astorio", "Calabra", "Domine", "Falone", "Marivaldi", "Pisacar", "Ramondo"}
 }
 human_tribes = ["Calishite", "Chondathan", "Damaran", "Illuskan", "Mulan", "Rashemi", "Shou", "Turami"]
-human_skin_tones = ['Black', 'Brown', 'Beige', 'White', 'Pink']
-human_hair_colors = ['Black', 'Brown', 'Blond', 'Red', 'White']
-human_hair_types = ['Curly', 'Wavy', 'Straight']
+human_skin_tones = ['Black', 'Brown', 'Beige', 'White', 'Pink', 'Tan', 'Olive']
+human_hair_colors = ['Black', 'Brown', 'Blond', 'Red', 'White', 'Grey']
+human_hair_types = ['Curly', 'Wavy', 'Straight', 'Flowing', 'Frizzy', 'Spiky', 'Touseled', 'Unkempt']
 human_eye_colors = ['Amber', 'Blue', 'Brown', 'Grey', 'Green', 'Hazel']
 
