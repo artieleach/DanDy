@@ -1,1 +1,0 @@
-add a ranged/melee tag to the weapons, or sort them by if theyre ranged. then, use the keys for that to pull random weapons instead.
