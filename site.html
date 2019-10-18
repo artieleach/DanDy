@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  <style type="text/css">
+.player_desc {
+    display: grid;
+    grid-template-areas: 'pname pname pname pname pname pname pname pname'
+    'classandlevel classandlevel classandlevel careerlevel race alignment alignment deity'
+    'size age gender height weight eyes hair skin';
+    grid-gap: 10px;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.player_desc > div {
+    text-align: left;
+    font-size: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.core_stats {
+    float:left;
+    display: grid;
+    grid-template-areas:
+    'stat_label stat stat_mod'
+    'str_label str str_mod'
+    'dex_label dex dex_mod'
+    'con_label con con_mod'
+    'int_label int int_mod'
+    'wis_label wis wis_mod'
+    'cha_label cha cha_mod';
+    grid-gap: 10px;
+    background-color: #FFF;
+    width: 20%;
+    text-align: center;
+    font-family: Arial;
+    margin: 10px;
+}
+
+.core_stats > div {
+    padding: 0;
+    font-size: 44px;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid black;
+
+}
+
+.hpac {
+    display: grid;
+    grid-template-areas:
+    'hp_label hp current current current current current current current current current'
+    'ac_label ac equals ten armor_bonus shield_bonus dex_modifier size_modifier natural_armor deflect misc';
+    background-color: #FFF;
+    width: 70%;
+    text-align: center;
+    font-family: Arial;
+    grid-gap: 10px;
+    margin: 10px;
+
+}
+.hpac > div {
+    padding: 0;
+    font-size: 44px;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid black;
+
+}
+.label {
+    text-transform: lowercase;
+    font-family: Arial;
+    font-variant: small-caps;
+    padding: 0;
+    font-size: 16px;
+    font-weight: normal;
+    overflow: visible;
+}
+
+.desc_label {
+    border-top: 1px solid black;
+}
+
+.box_label {
+    text-transform: uppercase;
+    font-size: 30px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+</style>
+</head>
+    <body style="margin: 0;padding: 0">
+        <div class="player_desc">
+            <div class="pname" style="grid-area: pname; ">{self.name}<div class='label desc_label'>name</div></div>
+            <div class="classandlevel" style="grid-area: classandlevel;">{self.user_class} 1<div class='label desc_label'>class and level</div></div>
+            <div class="careerlevel" style="grid-area: careerlevel;">1<div class='label desc_label'>career level</div></div>
+            <div class="race" style="grid-area: race;">{self.user_race}<div class='label desc_label'>race</div></div>
+            <div class="alignment" style="grid-area: alignment;">{' '.join(self.alignment)}<div class='label desc_label'>alignment</div></div>
+            <div class="deity" style="grid-area: deity;">{self.religion}<div class='label desc_label'>deity</div></div>
+            <div class="size" style="grid-area: size;">{self.size}<div class='label desc_label'>size</div></div>
+            <div class="age" style="grid-area: age;">{self.age}<div class='label desc_label'>age</div></div>
+            <div class="gender" style="grid-area: gender;">{self.gender}<div class='label desc_label'>gender</div></div>
+            <div class="height" style="grid-area: height;">{self.height}<div class='label desc_label'>height</div></div>
+            <div class="weight" style="grid-area: weight;">{self.weight}<div class='label desc_label'>weight</div></div>
+            <div class="eyes" style="grid-area: eyes;">{self.eye_color}<div class='label desc_label'>eyes</div></div>
+            <div class="hair" style="grid-area: hair;">{''.join([self.hair_type, self.hair_color])}<div class='label desc_label'>hair</div></div>
+            <div class="skin" style="grid-area: skin;">{self.skin_tone}<div class='label desc_label'>skin</div></div>
+        </div>
+        <div class="core_stats">
+            <div class="str_label" style="grid-area: stat_label;"><div class="label">Ability</div></div>
+            <div class="str label" style="grid-area: stat;"><div class="label">score</div></div>
+            <div class="str_mod label" style="grid-area: stat_mod;"><div class="label">modifier</div></div>
+            <div class="str_label" style="grid-area: str_label;"><div class='box_label'>str<div class="label">strength</div></div></div>
+            <div class="str" style="grid-area: str;">20</div>
+            <div class="str_mod" style="grid-area: str_mod;">+4</div>
+            <div class="dex_label" style="grid-area: dex_label;"><div class='box_label'>dex<div class="label">dexterity</div></div></div>
+            <div class="dex" style="grid-area: dex;">20</div>
+            <div class="dex_mod" style="grid-area: dex_mod;">+4</div>
+            <div class="con_label" style="grid-area: con_label;"><div class='box_label'>con<div class="label">constitution</div></div></div>
+            <div class="con" style="grid-area: con;">20</div>
+            <div class="con_mod" style="grid-area: con_mod;">+4</div>
+            <div class="int_label" style="grid-area: int_label;"><div class='box_label'>int<div class="label">intelligence</div></div></div>
+            <div class="int" style="grid-area: int;">20</div>
+            <div class="int_mod" style="grid-area: int_mod;">+4</div>
+            <div class="wis_label" style="grid-area: wis_label;"><div class='box_label'>wis<div class="label">wisdom</div></div></div>
+            <div class="wis" style="grid-area: wis;">20</div>
+            <div class="wis_mod" style="grid-area: wis_mod;">+4</div>
+            <div class="cha_label" style="grid-area: cha_label;"><div class='box_label'>cha<div class="label">charisma</div></div></div>
+            <div class="cha" style="grid-area: cha;">20</div>
+            <div class="cha_mod" style="grid-area: cha_mod;">+4</div>
+        </div>
+        <div class="hpac">
+            <div class="hp_label" style="grid-area: hp_label;"><div class='box_label'>hp<div class="label">hit points</div></div></div>
+            <div class="hp" style="grid-area: hp;">20</div>
+            <div class="current" style="grid-area: current;"></div>
+            <div class="ac_label" style="grid-area: ac_label; background-color: black;"><div class='box_label'>ac<div class="label">armor class</div></div></div>
+            <div class="armor_bonus" style="grid-area: ac;">0<div class='label desc_label'>total</div></div>
+            <div class="equals" style="grid-area: equals; border: 0;">=</div>
+            <div class="ten" style="grid-area: ten; border: 0;">10</div>
+            <div class="armor_bonus" style="grid-area: armor_bonus;">0<div class='label desc_label'>armor bonus</div></div>
+            <div class="shield_bonus" style="grid-area: shield_bonus;">0<div class='label desc_label'>shield bonus</div></div>
+            <div class="dex_modifier" style="grid-area: dex_modifier;">0<div class='label desc_label'>dex modifier</div></div>
+            <div class="size_modifier" style="grid-area: size_modifier;">0<div class='label desc_label'>size modifier</div></div>
+            <div class="natural_armor" style="grid-area: natural_armor;">0<div class='label desc_label'>natural armor</div></div>
+            <div class="deflect" style="grid-area: deflect;">0<div class='label desc_label'>deflection</div></div>
+            <div class="misc" style="grid-area: misc;">0<div class='label desc_label'>misc</div></div>
+        </div>
+
+    </body>
+</html>
