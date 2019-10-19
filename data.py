@@ -101,7 +101,8 @@ classes = {
         'skills': ["Climb", "Craft", "Handle Animal", "Intimidate", "Jump", "Listen", "Ride", "Survival", "Swim"],
         'health': 12,
         'xp': 4,
-        'gold': '4d4'
+        'gold': '4d4',
+        'deities': ['Kord', 'Obad Hai', 'Erythnul']
     },
 
     'Bard': {
@@ -253,6 +254,8 @@ races = {
         'age': (15, '1d6'),
         'height': (58, '2d4'),
         'weight': (120, '2d6'),
+        'size': 'Medium',
+        'deity': 'Pelor'
     },
 
     'Elf': {
@@ -261,7 +264,9 @@ races = {
         'last names': ["Amakiir", "Amastacia", "Galanodel", "Holimion", "Ilphelkiir", "Liadon", "Meliamne", "Naïlo", "Siannodel", "Xiloscient"],
         'age': (110, '6d6'),
         'height': (58, '2d6'),
-        'weight': (85, '1d6')
+        'weight': (85, '1d6'),
+        'size': 'Medium',
+        'deity': 'Corellon Larethian'
     },
 
     'Gnome': {
@@ -271,15 +276,18 @@ races = {
         'nick names': ["Aleslosh", "Ashhearth", "Badger", "Cloak", "Doublelock", "Filchbatter", "Fnipper", "Oneshoe", "Sparklegem", "Stumbleduck"],
         'age': (40, '6d6'),
         'height': (36, '2d4'),
-        'weight': (40, '1d6')
-
+        'weight': (40, '1d6'),
+        'size': 'Small',
+        'deity': 'Garl Glittergold'
     },
 
     'Orc': {
         'first names': ["Dench", "Feng", "Gell", "Henk", "Holg", "Imsh", "Keth", "Krusk", "Ront", "Shump", "Thokk"],
         'age': (15, '1d6'),
         'height': (58, '2d4'),
-        'weight': (120, '2d6')
+        'weight': (120, '2d6'),
+        'size': 'Medium',
+        'deity': 'Gruumsh'
     },
 
     'Halfling': {
@@ -287,7 +295,9 @@ races = {
         'last names': ["Brushgather", "Goodbarrel", "Greenbottle", "Highhill", "Hilltopple", "Leagallow", "Tealeaf", "Thorngage", "Tosscobble", "Underbough"],
         'age': (20, '3d6'),
         'height': (32, '2d4'),
-        'weight': (30, '1d1')
+        'weight': (30, '1d1'),
+        'size': 'Small',
+        'deity': 'Yondalla'
     },
 
     'Dwarf': {
@@ -297,16 +307,20 @@ races = {
         'clans': ["Balderk", "Dankil", "Gorunn", " Holderhek", "Loderr", "Lutgehr", "Rumnaheim", "Strakeln", "Torunn", "Ungart"],
         'age': (40, '5d6'),
         'height': (45, '2d4'),
-        'weight': (130, '2d6')
+        'weight': (130, '2d6'),
+        'size': 'Medium',
+        'deity': 'Moradin'
     },
     'Half-Elf': {
         'age': (20, '2d6'),
         'height': (55, '2d8'),
-        'weight': (100, '2d4')
+        'weight': (100, '2d4'),
+        'size': 'Medium',
     },
     'Half-Orc': {
         'age': (14, '1d6'),
         'height': (58, '2d12'),
-        'weight': (150, '2d6')
+        'weight': (150, '2d6'),
+        'size': 'Medium',
     },
 }
