@@ -16,9 +16,9 @@ class Player:
         self.stat_mods = {}
         self.alignment = None
         self.familiar = None
-        self.armor = None
-        self.shield = None
-        self.weapon = None
+        self.armor = 'None'
+        self.shield = 'None'
+        self.weapon = 'Unarmed'
         self.deity = None
         self.name = None
         self.age = None
@@ -56,6 +56,12 @@ class Player:
         self.languages = ['Common']
         for item in ['str', 'dex', 'con', 'int', 'wis', 'cha']:
             self.stats[item] = self.roll_dice('4d6d1')
+        for item in self.stats.keys():
+            if item in d.races[self.user_race]:
+                self.stats[item] += d.races[self.user_race][item]
+            self.stat_mods[item] = (self.stats[item] - 10) // 2
+        if 'language' in d.races[self.user_race]:
+            self.languages += [d.races[self.user_race]['language']]
         self.alignment = random.choice(d.align_chart)
         self.skin_tone = random.choice(d.skin_tones)
         self.hair_color = random.choice(d.hair_colors)
@@ -66,43 +72,29 @@ class Player:
         self.weight = d.races[self.user_race]['weight'][0] + (self.roll_dice(d.races[self.user_race]['weight'][1]) * (self.height - d.races[self.user_race]['height'][0]))
         self.size = d.races[self.user_race]['size']
         self.deity = random.choice(list(d.deities.keys()))
+        self.gold = self.roll_dice(d.classes[self.user_class]['gold']) * 10
+        skill_points = max(d.classes[self.user_class]['xp'] + self.stat_mods['int'], 1)
+        self.health = d.classes[self.user_class]['health'] + self.stat_mods['con']
 
-        if self.user_race == 'Dwarf':
+        if self.user_race is 'Dwarf':
             self.name = f'{random.choice(d.races["Dwarf"]["first names"])} {random.choice(d.races["Dwarf"]["last names"])}, of the clan {random.choice(d.races["Dwarf"]["clans"])}'
-            self.stats['con'] += 2
-            self.stats['cha'] -= 2
-            self.languages += ['Dwarven']
-            if self.roll_dice('1d10') > 7:
-                self.deity = 'Moradin'
 
-        if self.user_race == 'Elf':
+        if self.user_race is 'Elf':
             self.name = f'{random.choice(d.races["Elf"]["first names"])} {random.choice(d.races["Elf"]["last names"])}'
-            self.stats['dex'] += 2
-            self.stats['con'] -= 2
-            self.languages += ['Elven']
-            if self.roll_dice('1d10') > 7:
-                self.deity = 'Corellon Larethian'
 
-        if self.user_race == 'Halfling':
+        if self.user_race is 'Halfling':
             self.name = f'{random.choice(d.races["Halfling"]["first names"])} {random.choice(d.races["Halfling"]["last names"])}'
-            self.stats['dex'] += 2
-            self.stats['str'] -= 2
-            self.languages += ['Halfling']
 
-        if self.user_race == 'Gnome':
+        if self.user_race is 'Gnome':
             self.name = f'{random.choice(d.races["Gnome"]["first names"])} "{random.choice(d.races["Gnome"]["nick names"])}" {random.choice(d.races["Gnome"]["last names"])}, of the clan {random.choice(d.races["Gnome"]["clans"])}'
-            self.stats['con'] += 2
-            self.stats['str'] -= 2
-            self.languages += ['Gnome']
 
-        if self.user_race == 'Half-Elf':
+        if self.user_race is 'Half-Elf':
             tribe = random.choice(d.races["Human"]['tribes'])
             self.name = f'{random.choice(d.races["Human"]["first names"][tribe] + d.races["Elf"]["first names"])} {random.choice(d.races["Human"]["first names"][tribe] + d.races["Elf"]["last names"])}'
             if self.roll_dice('1d2') == 2:
                 self.name += ' of the clan ' + tribe
-            self.languages += ['Elven']
 
-        if self.user_race == 'Half-Orc':
+        if self.user_race is 'Half-Orc':
             tribe = random.choice(d.races["Human"]['tribes'])
             if self.roll_dice('1d2') == 2:
                 self.name = random.choice(d.races["Orc"]['first names'])
@@ -110,31 +102,20 @@ class Player:
                 self.name = f'{random.choice(d.races["Human"]["first names"][tribe] + d.races["Orc"]["first names"])} {random.choice(d.races["Human"]["first names"][tribe])}'
                 if self.roll_dice('1d10') > 7:
                     self.name += f', of the tribe {tribe}'
-            self.stats['int'] -= 2
-            self.stats['cha'] -= 2
-            self.stats['str'] += 2
-            self.languages += ['Orc']
 
-        if self.user_race == 'Human':
+        if self.user_race is 'Human':
             tribe = random.choice(d.races["Human"]['tribes'])
             self.name = f'{random.choice(d.races["Human"]["first names"][tribe])} {random.choice(d.races["Human"]["first names"][tribe])}, of the clan {tribe}'
             self.languages += [random.choice([item for item in d.languages if item not in self.languages])]
 
-        for item in self.stats.keys():
-            self.stat_mods[item] = (self.stats[item] - 10) // 2
-
-        skill_points = d.classes[self.user_class]['xp'] + self.stat_mods['int']
-        self.health = d.classes[self.user_class]['health'] + self.stat_mods['con']
-
-        if self.user_class == 'Barbarian':
+        if self.user_class is 'Barbarian':
             self.deity = random.choice(d.classes[self.user_class]['deities'])
             self.weapon = random.choice([i for i in d.weapons.keys() if d.weapons[i]['Rarity'] in ['Simple Weapons', 'Martial Weapons']])
             self.shield = random.choice(list(d.shields.keys()))
             self.armor = random.choice(d.classes[self.user_class]['armor'])
             self.alignment = random.choice([item for item in d.align_chart if item[0] not in 'Lawful'])
-            self.gold = self.roll_dice('4d4') * 10
 
-        if self.user_class == 'Bard':
+        if self.user_class is 'Bard':
             self.weapon = random.choice(d.classes[self.user_class]['weapons'])
             self.shield = random.choice([i for i in d.shields.keys() if d.shields[i]['Class'] == 'Light'])
             self.armor = random.choice([i for i in d.armor.keys() if d.armor[i]['Class'] == 'Light'])
@@ -148,9 +129,8 @@ class Player:
                 self.deity = 'Pelor'
             elif 'Evil' in self.alignment:
                 self.deity = 'Erythnul'
-            self.gold = self.roll_dice('4d4') * 10
 
-        if self.user_class == 'Cleric':
+        if self.user_class is 'Cleric':
             if 'deity' in d.races[self.user_race] and self.roll_dice('1d2') == 2:
                 self.deity = d.races[self.user_race]['deity']
             self.alignment = d.align_chart[random.choice(d.classes[self.user_class]['alignment'][d.deities[self.deity]['alignment']-1])-1]
@@ -163,9 +143,8 @@ class Player:
                 self.feats += ['Weapon Focus']
             if ['Animal', 'Plant'] in self.domains:
                 self.skills += 'Knowledge, Nature'
-            self.gold = self.roll_dice('5d4') * 10
 
-        if self.user_class == 'Druid':
+        if self.user_class is 'Druid':
             if self.roll_dice('1d2') == 2:
                 self.shield = 'Light Wooden'
                 self.weapon = 'Unarmed'
@@ -173,20 +152,18 @@ class Player:
                 self.shield = 'Heavy Wooden'
                 self.weapon = random.choice(d.classes[self.user_class]['weapons'])
             self.armor = random.choice(d.classes[self.user_class]['armor'])
-            self.alignment = d.align_chart[random.choice(d.classes[self.user_class]['alignment'])-1]
+            self.alignment = random.choice([item for item in d.align_chart if 'Neutral' in item])
             self.languages += d.classes[self.user_class]['languages']
             self.familiar = random.choice(d.classes[self.user_class]['companions'])
-            self.gold = self.roll_dice('2d4') * 10
 
-        if self.user_class == 'Fighter':
+        if self.user_class is 'Fighter':
             self.weapon = random.choice([i for i in d.weapons.keys() if d.weapons[i]['Rarity'] in ['Simple Weapons', 'Martial Weapons']])
             self.shield = random.choice(list(d.shields.keys()))
             self.armor = random.choice(list(d.armor.keys()))
             self.deity = random.choice(d.classes[self.user_class]['deities'])
             self.feats += [random.choice(d.feats)]
-            self.gold = self.roll_dice('6d4') * 10
 
-        if self.user_class == 'Monk':
+        if self.user_class is 'Monk':
             self.alignment = random.choice([item for item in d.align_chart if item[0] in 'Lawful'])
             self.weapon = random.choice(d.classes[self.user_class]['weapons'])
             if self.roll_dice('1d10') == 10:
@@ -198,39 +175,34 @@ class Player:
             if not self.armor:
                 self.armor_class = 10 + d.armor['None']['Armor Bonus'] + d.shields[self.shield]['Armor Bonus'] + self.stat_mods['wis']
             self.feats += ['Improved Unarmed Strike', random.choice(['Improved Grapple', 'Stunning Fist'])]
-            self.gold = self.roll_dice('5d4') * 10
 
-        if self.user_class == 'Paladin':
+        if self.user_class is 'Paladin':
             self.armor = random.choice(list(d.armor.keys()))
             self.shield = random.choice(list(d.shields.keys()))
             self.weapon = random.choice(list(d.weapons.keys()))
             self.alignment = ('Lawful', 'Good')
-            self.gold = self.roll_dice('6d4') * 10
 
-        if self.user_class == 'Ranger':
+        if self.user_class is 'Ranger':
             self.armor = random.choice([i for i in d.armor.keys() if d.armor[i]['Class'] == 'Light'])
             self.shield = random.choice([i for i in d.shields.keys() if d.shields[i]['Class'] == 'Light'])
             self.weapon = random.choice([i for i in d.weapons.keys() if 'Ranged' in d.weapons[i]['Weapon Type']])
             self.favored_enemy = random.choice(d.classes[self.user_class]['favored enemies'])
             self.feats += ['Track']
-            self.gold = self.roll_dice('6d4') * 10
 
-        if self.user_class == 'Rogue':
+        if self.user_class is 'Rogue':
             self.armor = random.choice([i for i in d.armor.keys() if d.armor[i]['Class'] == 'Light'])
             self.weapon = random.choice(d.classes[self.user_class]['weapons'])
             self.deity = random.choice(list(d.deities.keys()))
-            self.gold = self.roll_dice('5d4') * 10
 
-        if self.user_class == 'Sorcerer':
+        if self.user_class is 'Sorcerer':
             self.weapon = random.choice([i for i in d.weapons.keys() if 'Simple' in d.weapons[i]['Rarity']])
             if self.roll_dice('1d2') == 2:
                 self.deity = None
             self.familiar = random.choice(d.familiars)
             if self.familiar == 'Toad':
                 self.health = 7 + self.stat_mods['con']
-            self.gold = self.roll_dice('3d4') * 10
 
-        if self.user_class == 'Wizard':
+        if self.user_class is 'Wizard':
             self.weapon = random.choice(d.classes[self.user_class]['weapons'])
             self.feats += ['Scribe Scroll']
             if self.roll_dice('1d10') > 7:
@@ -243,13 +215,10 @@ class Player:
                 self.languages += ['Draconic']
             self.school = random.choice(list(d.classes[self.user_class]['schools']))
             self.forbidden_schools = random.sample([item for item in list(d.classes[self.user_class]['schools']) if item[0] not in self.school], 2 - int(self.school == 'Divination'))
-            self.gold = self.roll_dice('3d4') * 10
 
         if self.stat_mods['int'] > 1:
             self.languages += [random.choice([item for item in d.languages if item[0] not in self.languages])]
 
-        if skill_points < 1:
-            skill_points = 1
         if self.user_race == 'Human':
             skill_points += 1
         if skill_points > len(d.classes[self.user_class]['skills']):
@@ -268,8 +237,8 @@ class Player:
             skill_points -= 1
         self.skills += random.sample([item for item in d.classes[self.user_class]['skills'] if item[0] not in self.skills], skill_points)
 
-        if self.weapon and d.weapons[self.weapon]['Damage Type'] in ['Two-Handed Melee Weapons', 'Ranged Weapons']:
-            self.shield = None
+        if self.weapon and d.weapons[self.weapon]['Weapon Type'] in ['Two-Handed Melee Weapons', 'Ranged Weapons']:
+            self.shield = 'None'
 
         if not self.armor_class:
             self.armor_class = 10
@@ -281,18 +250,13 @@ class Player:
         if self.alignment == ('Neutral', 'Neutral'):
             self.alignment = ('True', 'Neutral')
 
-        if self.armor:
-            self.arcane_failure = d.armor[self.armor]['Arcane Spell Failure']
-        else:
-            self.arcane_failure = 0
-        if sum([self.stat_mods[item] for item in self.stat_mods.keys()]) > 18:
-            for item in self.__dict__:
-                print(f'{item}: {self.__dict__[item]}')
-            print('\n\n\n')
+        self.arcane_failure = d.armor[self.armor]['Arcane Spell Failure'] + d.shields[self.shield]['Arcane Spell Failure']
 
-        if 0 < sum([self.stats[item] for item in self.stats.keys()]) <= 40:
+        if sum([self.stats[item] for item in self.stats.keys()]) > 98:
+            print('\n\n\n')
             for item in self.__dict__:
-                print(f'{item}: {self.__dict__[item]}')
+                if self.__dict__[item]:
+                    print(f'{item}: {self.__dict__[item]}')
             print('\n\n\n')
 
 

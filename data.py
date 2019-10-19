@@ -158,7 +158,8 @@ classes = {
     'Paladin': {
         'skills': ["Concentration", "Craft", "Diplomacy", "Handle Animal", "Heal", "Knowledge (nobility and royalty)", "Knowledge (religion)", "Profession", "Ride", "Sense Motive", "Spot", "Swim", "Tumble"],
         'health': 10,
-        'xp': 2
+        'xp': 2,
+        'gold': '6d4'
     },
 
     'Ranger': {
@@ -266,7 +267,10 @@ races = {
         'height': (58, '2d6'),
         'weight': (85, '1d6'),
         'size': 'Medium',
-        'deity': 'Corellon Larethian'
+        'deity': 'Corellon Larethian',
+        'dex': 2,
+        'con': -2,
+        'language': 'Elven'
     },
 
     'Gnome': {
@@ -278,7 +282,10 @@ races = {
         'height': (36, '2d4'),
         'weight': (40, '1d6'),
         'size': 'Small',
-        'deity': 'Garl Glittergold'
+        'deity': 'Garl Glittergold',
+        'con': 2,
+        'str': -2,
+        'language': 'Gnomish'
     },
 
     'Orc': {
@@ -287,7 +294,8 @@ races = {
         'height': (58, '2d4'),
         'weight': (120, '2d6'),
         'size': 'Medium',
-        'deity': 'Gruumsh'
+        'deity': 'Gruumsh',
+        'language': 'Orc'
     },
 
     'Halfling': {
@@ -297,7 +305,10 @@ races = {
         'height': (32, '2d4'),
         'weight': (30, '1d1'),
         'size': 'Small',
-        'deity': 'Yondalla'
+        'deity': 'Yondalla',
+        'dex': 2,
+        'str': -2,
+        'language': 'Halfling'
     },
 
     'Dwarf': {
@@ -309,18 +320,27 @@ races = {
         'height': (45, '2d4'),
         'weight': (130, '2d6'),
         'size': 'Medium',
-        'deity': 'Moradin'
+        'deity': 'Moradin',
+        'con': 2,
+        'cha': -2,
+        'language': 'Dwarven'
+
     },
     'Half-Elf': {
         'age': (20, '2d6'),
         'height': (55, '2d8'),
         'weight': (100, '2d4'),
         'size': 'Medium',
+        'language': 'Elf'
     },
     'Half-Orc': {
         'age': (14, '1d6'),
         'height': (58, '2d12'),
         'weight': (150, '2d6'),
         'size': 'Medium',
+        'int': 2,
+        'cha': -2,
+        'str': -2,
+        'language': 'Orc'
     },
 }
