@@ -1,7 +1,6 @@
 '''from bs4 import BeautifulSoup
 
 bs = BeautifulSoup(None, features='html.parser')
-            self.languages += [random.choice(d.classes['Cleric']['languages'])]
 
 results = {}
 weap_type = ''

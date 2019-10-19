@@ -288,16 +288,6 @@ races = {
         'language': 'Gnomish'
     },
 
-    'Orc': {
-        'first names': ["Dench", "Feng", "Gell", "Henk", "Holg", "Imsh", "Keth", "Krusk", "Ront", "Shump", "Thokk"],
-        'age': (15, '1d6'),
-        'height': (58, '2d4'),
-        'weight': (120, '2d6'),
-        'size': 'Medium',
-        'deity': 'Gruumsh',
-        'language': 'Orc'
-    },
-
     'Halfling': {
         'first names': ["Alton", "Ander", "Cade", "Corrin", "Eldon", "Errich", "Finnan", "Garret", "Lindal", "Lyle", "Merric", "Milo", "Osborn", "Perrin", "Reed", "Roscoe", "Wellby"],
         'last names': ["Brushgather", "Goodbarrel", "Greenbottle", "Highhill", "Hilltopple", "Leagallow", "Tealeaf", "Thorngage", "Tosscobble", "Underbough"],
@@ -334,6 +324,7 @@ races = {
         'language': 'Elf'
     },
     'Half-Orc': {
+        'first names': ["Dench", "Feng", "Gell", "Henk", "Holg", "Imsh", "Keth", "Krusk", "Ront", "Shump", "Thokk"],
         'age': (14, '1d6'),
         'height': (58, '2d12'),
         'weight': (150, '2d6'),
@@ -341,6 +332,7 @@ races = {
         'int': 2,
         'cha': -2,
         'str': -2,
+        'deity': 'Gruumsh',
         'language': 'Orc'
     },
 }
