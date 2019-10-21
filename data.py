@@ -1,6 +1,3 @@
-race_list = ["Dwarf", "Elf", "Halfling", "Human", "Gnome", "Half-Elf", "Half-Orc"]
-class_list = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Sorcerer", "Rogue", "Wizard"]
-
 align_chart = list(zip(["Lawful", "Neutral", "Chaotic"] * 3, [item for item in [(i, i, i) for i in ["Good", "Neutral", "Evil"]] for item in item]))
 
 weapons = {
@@ -75,25 +72,25 @@ weapons = {
 feats = ["Acrobatic", "Agile", "Alertness", "Animal Affinity", "Armor Proficency", "Athletic", "Blind Fight", "Combat Casting", "Combat Reflexes", "Deceitful", "Deft Hands", "Diligent", "Endurance", "Eschew Materials", "Great Fortitude", "Improved Counterspell", "Improved Initiative", "Improved Unarmed Strike", "Investigator", "Iron Will", "Lightning Reflexes", "Magical Aptitude", "Martial Weapon Proficency", "Negotiator", "Nimble Fingers", "Persuasive", "Point Blank Shot", "Run", "Self Sufficent", "Skill Focus", "Spell Focus", "Spell Penetration", "Stealthy", "Toughness", "Track"]
 
 deities = {
-    "Boccob": {'domains': ["Knowledge", "Magic", "Trickery"], 'weapon': 'Quarterstaff', 'alignment': 5},
-    "Corellon Larethian": {'domains': ["Chaos", "Good", "Protection", "War"], 'weapon': 'Longsword', 'alignment': 7},
-    "Ehlonna": {'domains': ["Animal", "Good", "Plant", "Sun"], 'weapon': 'Longbow', 'alignment': 4},
-    "Erythnul": {'domains': ["Chaos", "Evil", "Trickery", "War"], 'weapon': 'Morningstar', 'alignment': 9},
-    "Fharlanghn": {'domains': ["Luck", "Protection", "Travel"], 'weapon': 'Quarterstaff', 'alignment': 5},
-    "Garl Glittergold": {'domains': ["Good", "Protection", "Trickery"], 'weapon': 'Battleaxe', 'alignment': 4},
-    "Gruumsh": {'domains': ["Chaos", "Evil", "Strength"], 'weapon': 'Spear', 'alignment': 9},
-    "Heironeous": {'domains': ["Good", "Law", "War"], 'weapon': 'Longsword', 'alignment': 1},
-    "Hextor": {'domains': ["Destruction", "Evil", "Law", "War"], 'weapon': 'Flail', 'alignment': 3},
-    "Kord": {'domains': ["Chaos", "Good Luck", "Strength"], 'weapon': 'Greatsword', 'alignment': 7},
-    "Moradin": {'domains': ["Earth", "Good", "Law", "Protection"], 'weapon': 'Warhammer', 'alignment': 1},
-    "Nerull": {'domains': ["Death", "Evil", "Trickery"], 'weapon': 'Scythe', 'alignment': 6},
-    "Obad Hai": {'domains': ["Air", "Animal", "Earth", "Fire", "Plant", "Water"], 'weapon': 'Quarterstaff', 'alignment': 5},
-    "Olidammara": {'domains': ["Chaos", "Luck", "Trickery"], 'weapon': 'Rapier', 'alignment': 8},
-    "Pelor": {'domains': ["Good", "Healing", "Strength"], 'weapon': 'Mace, heavy', 'alignment': 4},
-    "St. Cuthbert": {'domains': ["Destruction", "Law", "Protection", "Strength"], 'weapon': 'Mace, light', 'alignment': 2},
-    "Vecna": {'domains': ["Evil", "Knowledge", "Magic"], 'weapon': 'Dagger', 'alignment': 6},
-    "Wee Jas": {'domains': ["Death", "Law", "Magic"], 'weapon': 'Dagger', 'alignment': 2},
-    "Yondalla": {'domains': ["Good", "Law", "Protection"], 'weapon': 'Sword, short', 'alignment': 1}
+    "Boccob": {'domains': ["Knowledge", "Magic", "Trickery"], 'weapon': 'Quarterstaff', 'alignment': 0},
+    "Corellon Larethian": {'domains': ["Chaotic", "Good", "Protection", "War"], 'weapon': 'Longsword', 'alignment': 6},
+    "Ehlonna": {'domains': ["Animal", "Good", "Plant", "Sun"], 'weapon': 'Longbow', 'alignment': 3},
+    "Erythnul": {'domains': ["Chaotic", "Evil", "Trickery", "War"], 'weapon': 'Morningstar', 'alignment': 8},
+    "Fharlanghn": {'domains': ["Luck", "Protection", "Travel"], 'weapon': 'Quarterstaff', 'alignment': 4},
+    "Garl Glittergold": {'domains': ["Good", "Protection", "Trickery"], 'weapon': 'Battleaxe', 'alignment': 3},
+    "Gruumsh": {'domains': ["Chaotic", "Evil", "Strength"], 'weapon': 'Spear', 'alignment': 8},
+    "Heironeous": {'domains': ["Good", "Lawful", "War"], 'weapon': 'Longsword', 'alignment': 0},
+    "Hextor": {'domains': ["Destruction", "Evil", "Lawful", "War"], 'weapon': 'Flail', 'alignment': 2},
+    "Kord": {'domains': ["Chaotic", "Good", "Luck", "Strength"], 'weapon': 'Greatsword', 'alignment': 6},
+    "Moradin": {'domains': ["Earth", "Good", "Lawful", "Protection"], 'weapon': 'Warhammer', 'alignment': 0},
+    "Nerull": {'domains': ["Death", "Evil", "Trickery"], 'weapon': 'Scythe', 'alignment': 5},
+    "Obad Hai": {'domains': ["Air", "Animal", "Earth", "Fire", "Plant", "Water"], 'weapon': 'Quarterstaff', 'alignment': 4},
+    "Olidammara": {'domains': ["Chaotic", "Luck", "Trickery"], 'weapon': 'Rapier', 'alignment': 7},
+    "Pelor": {'domains': ["Good", "Healing", "Strength"], 'weapon': 'Mace, heavy', 'alignment': 3},
+    "St. Cuthbert": {'domains': ["Destruction", "Lawful", "Protection", "Strength"], 'weapon': 'Mace, light', 'alignment': 1},
+    "Vecna": {'domains': ["Evil", "Knowledge", "Magic"], 'weapon': 'Dagger', 'alignment': 5},
+    "Wee Jas": {'domains': ["Death", "Lawful", "Magic"], 'weapon': 'Dagger', 'alignment': 1},
+    "Yondalla": {'domains': ["Good", "Lawful", "Protection"], 'weapon': 'Sword, short', 'alignment': 0}
 }
 classes = {
     'Barbarian': {
@@ -110,7 +107,8 @@ classes = {
         'skills': ["Appraise", "Balance", "Bluff", "Climb", "Concentration", "Craft", "Decipher Script", "Diplomacy", "Disguise", "Escape Artist", "Gather Information", "Hide", "Intimidate", "Jump", "Knowledge (arcana)", "Knowledge (architecture and engineering)", "Knowledge (dungeoneering)", "Knowledge (geography)", "Knowledge (history)", "Knowledge (local)", "Knowledge (nature)", "Knowledge (nobility and royalty)", "Knowledge (religion)", "Knowledge (the planes)", "Listen", "Move Silently", "Perform", "Profession", "Ride", "Search", "Sense Motive", "Sleight of Hand", "Speak Language", "Spellcraft", "Swim", "Tumble", "Use Magic Device"],
         'health': 6,
         'xp': 6,
-        'gold': '4d4'
+        'gold': '4d4',
+        'spells': ['Dancing Lights', 'Daze', 'Detect Magic', 'Flare', 'Ghost Sound', 'Know Direction', 'Light', 'Lullaby', 'Mage Hand', 'Mending', 'Message', 'Open/Close', 'Prestidigitation', 'Read Magic', 'Resistance', 'Summon Instrument']
     },
 
     'Cleric': {
@@ -118,9 +116,33 @@ classes = {
         'skills': ["Concentration", "Craft", "Diplomacy", "Heal", "Knowledge (arcana)", "Knowledge (history)", "Knowledge (religion)", "Knowledge (the planes)", "Profession", "Spellcraft"],
         'health': 8,
         'xp': 2,
-        'alignment': [[1], [1, 2, 3, 5], [3], [1, 4, 5, 7], [2, 4, 5, 6, 8], [3, 5, 6, 9], [7], [5, 7, 8, 9], [9]],
+        'alignment': [[0], [0, 1, 2, 4], [2], [0, 3, 4, 6], [1, 3, 4, 5, 7], [2, 4, 5, 8], [6], [4, 6, 7, 8], [0]],
         'gold': '5d4',
-        'languages': ['Celestial', 'Abyssal', 'Infernal']
+        'languages': ['Celestial', 'Abyssal', 'Infernal'],
+        'spells level 0': ['Create Water', 'Cure Minor Wounds', 'Detect Magic', 'Detect Poison', 'Guidance', 'Inflict Minor Wounds', 'Light', 'Mending', 'Purify Food and Drink', 'Read Magic', 'Resistance', 'Virtue'],
+        'spells level 1': ['Bane', 'Bless', 'Bless Water', 'Cause Fear', 'Command', 'Comprehend Languages', 'Cure Light Wounds', 'Curse Water', 'Deathwatch', 'Detect Chaos/Evil/Good/Law', 'Detect Undead', 'Divine Favor', 'Doom', 'Endure Elements', 'Entropic Shield', 'Hide from Undead', 'Inflict Light Wounds', 'Magic Stone', 'Magic Weapon', 'Obscuring Mist', 'Protection from Chaos/Evil/Good/Law', 'Remove Fear', 'Sanctuary', 'Shield of Faith', 'Summon Monster'],
+        'Air': 'Obscuring Mist',
+        'Animal': 'Calm Animals',
+        'Chaotic': 'Protection from Law',
+        'Death': 'Cause Fear',
+        'Destruction': 'Inflict Light Wounds',
+        'Earth': 'Magic Stone',
+        'Evil': 'Protection from Good',
+        'Fire': 'Burning Hands',
+        'Good': 'Protection from Evil',
+        'Healing': 'Cure Light Wounds',
+        'Knowledge': 'Detect Secret Doors',
+        'Lawful': ['Protection from Chaos', 'Calm Emotions'],  # law gets two
+        'Luck': 'Entropic Shield',
+        'Magic': 'Magic Aura',
+        'Plant': 'Entangle',
+        'Protection': 'Sanctuary',
+        'Strength': 'Enlarge Person',
+        'Sun': 'Endure Elements',
+        'Travel': 'Longstrider',
+        'Trickery': 'Disguise Self',
+        'War': 'Magic Weapon',
+        'Water': 'Obscuring Mist',
     },
 
     'Druid': {
@@ -131,8 +153,7 @@ classes = {
         'skills': ["Concentration", "Craft", "Diplomacy", "Handle Animal", "Heal", "Knowledge (nature)", "Listen", "Profession", "Ride", "Spellcraft", "Spot", "Survival", "Swim"],
         'languages': ['Druidic', 'Sylvan'],
         'armor': ['Padded', 'Leather', 'Hide'],
-        'alignment': [2, 4, 5, 6, 8],
-        'gold': '2d4'
+        'gold': '2d4',
 
     },
 
@@ -198,7 +219,7 @@ classes = {
 }
 familiars = ["Bat", "Cat", "Hawk", "Lizard", "Owl", "Rat", "Raven", "Snake", "Toad", "Weasel"]
 
-languages = ["Abyssal", "Aquan", "Auran", "Celestial", "Draconic", "Dwarven", "Elven", "Giant", "Gnome", "Goblin", "Gnoll", "Halfling", "Ignan", "Infernal", "Orc", "ylvan", "Terran", "Undercommon"]
+languages = ["Abyssal", "Aquan", "Auran", "Celestial", "Draconic", "Dwarven", "Elven", "Giant", "Gnome", "Goblin", "Gnoll", "Halfling", "Ignan", "Infernal", "Orc", "Sylvan", "Terran", "Undercommon"]
 
 
 armor = {
@@ -256,6 +277,7 @@ races = {
         'height': (58, '2d4'),
         'weight': (120, '2d6'),
         'size': 'Medium',
+        'speed': 30,
         'deity': 'Pelor'
     },
 
@@ -270,7 +292,8 @@ races = {
         'deity': 'Corellon Larethian',
         'dex': 2,
         'con': -2,
-        'language': 'Elven'
+        'speed': 30,
+        'languages': ['Elven', 'Draconic', 'Gnoll', 'Gnome', 'Goblin', 'Orc', 'Sylvan'],
     },
 
     'Gnome': {
@@ -285,7 +308,8 @@ races = {
         'deity': 'Garl Glittergold',
         'con': 2,
         'str': -2,
-        'language': 'Gnomish'
+        'speed': 20,
+        'languages': ['Gnomish', 'Draconic', 'Dwarven', 'Elven', 'Giant', 'Goblin', 'Orc']
     },
 
     'Halfling': {
@@ -298,7 +322,8 @@ races = {
         'deity': 'Yondalla',
         'dex': 2,
         'str': -2,
-        'language': 'Halfling'
+        'languages': ['Halfling', 'Dwarven', 'Elven', 'Gnome', 'Goblin', 'Orc'],
+        'speed': 20,
     },
 
     'Dwarf': {
@@ -313,7 +338,9 @@ races = {
         'deity': 'Moradin',
         'con': 2,
         'cha': -2,
-        'language': 'Dwarven'
+        'speed': 20,
+        'languages': ['Dwarven', 'Giant', 'Gnome', 'Goblin', 'Orc', 'Terran', 'Undercommon'],
+        'racial features': ['Darkvision', 'Stonecunning', 'Stability']
 
     },
     'Half-Elf': {
@@ -321,7 +348,7 @@ races = {
         'height': (55, '2d8'),
         'weight': (100, '2d4'),
         'size': 'Medium',
-        'language': 'Elf'
+        'speed': 30,
     },
     'Half-Orc': {
         'first names': ["Dench", "Feng", "Gell", "Henk", "Holg", "Imsh", "Keth", "Krusk", "Ront", "Shump", "Thokk"],
@@ -329,10 +356,11 @@ races = {
         'height': (58, '2d12'),
         'weight': (150, '2d6'),
         'size': 'Medium',
-        'int': 2,
+        'int': -2,
         'cha': -2,
-        'str': -2,
+        'str': 2,
+        'speed': 30,
         'deity': 'Gruumsh',
-        'language': 'Orc'
+        'languages': ['Orc', 'Draconic', 'Giant', 'Gnoll', 'Goblin', 'Abyssal']
     },
 }
